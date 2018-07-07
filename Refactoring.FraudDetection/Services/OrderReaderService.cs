@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System.Text;
 
-using Payvision.CodeChallenge.Refactoring.FraudDetection.Factories;
+using Payvision.CodeChallenge.Refactoring.FraudDetection.Extensions;
 
 namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
 {
@@ -9,6 +9,8 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
     using System.IO;
 
     using Entities;
+
+    using Factories;
 
     public class OrderReaderService : IOrderReaderService
     {
@@ -23,33 +25,47 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
             _orderDataNormalizationService = orderDataNormalizationService ?? throw new ArgumentNullException(nameof(orderDataNormalizationService));
         }
 
-        public IEnumerable<Order> ReadOrders(string filePath)
+        public IEnumerable<Order> ReadOrders(FileStream ordersFileStream)
         {
-            if (string.IsNullOrWhiteSpace(filePath))
+            if (ordersFileStream == null)
             {
-                const string pathNullOrEmptyError = "Path cannot be null or empty when reading orders.";
-                throw new ArgumentNullException(nameof(filePath), pathNullOrEmptyError);
+                throw new ArgumentNullException(nameof(ordersFileStream));
             }
 
-            var lines = ReadOrdersFile(filePath);
+            var lines = ReadOrdersFromStream(ordersFileStream);
             foreach (var line in lines)
             {
                 yield return ParseOrder(line);
             }
         }
 
-        private static IEnumerable<string> ReadOrdersFile(string filePath)
+        private static IEnumerable<string> ReadOrdersFromStream(FileStream ordersFileStream)
         {
             try
             {
-                return File.ReadAllLines(filePath)
-                    .Where(line => !string.IsNullOrEmpty(line));
+                var fileContents = ReadFileContents(ordersFileStream);
+                return BreakLines(fileContents);
             }
             catch (Exception e)
             {
                 LogException(e);
                 return Array.Empty<string>();
             }
+            finally
+            {
+                ordersFileStream.Close();
+            }
+        }
+
+        private static string ReadFileContents(FileStream ordersFileStream)
+        {
+            var fileBytes = ordersFileStream.ReadAllBytes();
+            return Encoding.UTF8.GetCleanString(fileBytes);
+        }
+
+        private static IEnumerable<string> BreakLines(string fileContents)
+        {
+            return fileContents.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         private static void LogException(Exception e)

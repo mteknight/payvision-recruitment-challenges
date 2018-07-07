@@ -1,4 +1,6 @@
-﻿namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
+﻿using System.IO;
+
+namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
 {
     using System.Collections.Generic;
 
@@ -6,6 +8,6 @@
 
     public interface IOrderReaderService
     {
-        IEnumerable<Order> ReadOrders(string filePath);
+        IEnumerable<Order> ReadOrders(FileStream ordersFileStream);
     }
 }

@@ -33,7 +33,9 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
         [DeploymentItem("./Files/OneLineFile.txt", "Files")]
         public void CheckFraud_OneLineFile_NoFraudExpected()
         {
-            var result = ExecuteTest(Path.Combine(Environment.CurrentDirectory, "Files", "OneLineFile.txt"));
+            var filePath = Path.Combine(Environment.CurrentDirectory, "Files", "OneLineFile.txt");
+            var ordersFileStream = File.OpenRead(filePath);
+            var result = ExecuteTest(ordersFileStream);
 
             result.Should().NotBeNull("The result should not be null.");
             result.Count().ShouldBeEquivalentTo(0, "The result should not contains fraudulent lines");
@@ -43,7 +45,9 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
         [DeploymentItem("./Files/TwoLines_FraudulentSecond.txt", "Files")]
         public void CheckFraud_TwoLines_SecondLineFraudulent()
         {
-            var result = ExecuteTest(Path.Combine(Environment.CurrentDirectory, "Files", "TwoLines_FraudulentSecond.txt"));
+            var filePath = Path.Combine(Environment.CurrentDirectory, "Files", "TwoLines_FraudulentSecond.txt");
+            var ordersFileStream = File.OpenRead(filePath);
+            var result = ExecuteTest(ordersFileStream);
 
             result.Should().NotBeNull("The result should not be null.");
             result.Count().ShouldBeEquivalentTo(1, "The result should contains the number of lines of the file");
@@ -55,7 +59,9 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
         [DeploymentItem("./Files/ThreeLines_FraudulentSecond.txt", "Files")]
         public void CheckFraud_ThreeLines_SecondLineFraudulent()
         {
-            var result = ExecuteTest(Path.Combine(Environment.CurrentDirectory, "Files", "ThreeLines_FraudulentSecond.txt"));
+            var filePath = Path.Combine(Environment.CurrentDirectory, "Files", "ThreeLines_FraudulentSecond.txt");
+            var ordersFileStream = File.OpenRead(filePath);
+            var result = ExecuteTest(ordersFileStream);
 
             result.Should().NotBeNull("The result should not be null.");
             result.Count().ShouldBeEquivalentTo(1, "The result should contains the number of lines of the file");
@@ -67,17 +73,19 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
         [DeploymentItem("./Files/FourLines_MoreThanOneFraudulent.txt", "Files")]
         public void CheckFraud_FourLines_MoreThanOneFraudulent()
         {
-            var result = ExecuteTest(Path.Combine(Environment.CurrentDirectory, "Files", "FourLines_MoreThanOneFraudulent.txt"));
+            var filePath = Path.Combine(Environment.CurrentDirectory, "Files", "FourLines_MoreThanOneFraudulent.txt");
+            var ordersFileStream = File.OpenRead(filePath);
+            var result = ExecuteTest(ordersFileStream);
 
             result.Should().NotBeNull("The result should not be null.");
             result.Count().ShouldBeEquivalentTo(2, "The result should contains the number of lines of the file");
         }
 
-        private List<FraudResult> ExecuteTest(string filePath)
+        private List<FraudResult> ExecuteTest(FileStream ordersFileStream)
         {
             var fraudRadar = this._fraudRadarFactory.Create();
 
-            return fraudRadar.Check(filePath).ToList();
+            return fraudRadar.Check(ordersFileStream).ToList();
         }
     }
 }

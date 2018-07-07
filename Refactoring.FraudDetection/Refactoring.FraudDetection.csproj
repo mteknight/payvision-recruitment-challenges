@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\EncodingExtensions.cs" />
+    <Compile Include="Extensions\FileSteamExtensions.cs" />
     <Compile Include="Factories\FraudRadarFactory.cs" />
     <Compile Include="Factories\Interfaces\IFraudRadarFactory.cs" />
     <Compile Include="Factories\Interfaces\IOrderDataNormalizationServiceFactory.cs" />

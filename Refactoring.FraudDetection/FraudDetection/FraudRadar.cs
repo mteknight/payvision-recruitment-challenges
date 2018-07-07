@@ -1,4 +1,6 @@
-﻿namespace Payvision.CodeChallenge.Refactoring.FraudDetection
+﻿using System.IO;
+
+namespace Payvision.CodeChallenge.Refactoring.FraudDetection
 {
     using System;
     using System.Collections.Generic;
@@ -20,9 +22,9 @@
             _orderReaderService = orderReaderService ?? throw new ArgumentNullException(nameof(orderReaderService));
         }
 
-        public IEnumerable<FraudResult> Check(string filePath)
+        public IEnumerable<FraudResult> Check(FileStream ordersFileStream)
         {
-            var orders = _orderReaderService.ReadOrders(filePath);
+            var orders = _orderReaderService.ReadOrders(ordersFileStream);
             return GetFrauds(orders.ToList());
         }
 

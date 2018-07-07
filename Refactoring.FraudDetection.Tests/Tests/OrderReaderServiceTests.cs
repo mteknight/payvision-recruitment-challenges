@@ -1,4 +1,6 @@
-﻿namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
+﻿using System.IO;
+
+namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -23,26 +25,18 @@
         }
 
         [TestMethod]
-        public void ReadOrders_EmptyFilePath_ExceptionExpected()
-        {
-            var result = new Action(() => ExecuteTest(string.Empty));
-
-            result.ShouldThrowExactly<ArgumentNullException>("The result should not read from empty file path");
-        }
-
-        [TestMethod]
-        public void ReadOrders_NullFilePath_ExceptionExpected()
+        public void ReadOrders_NullFileStream_ExceptionExpected()
         {
             var result = new Action(() => ExecuteTest(null));
 
             result.ShouldThrowExactly<ArgumentNullException>("The result should not read from empty file path");
         }
 
-        private List<Order> ExecuteTest(string filePath)
+        private List<Order> ExecuteTest(FileStream ordersFileStream)
         {
             var orderReader = this._orderReaderServiceFactory.Create();
 
-            return orderReader.ReadOrders(filePath).ToList();
+            return orderReader.ReadOrders(ordersFileStream).ToList();
         }
     }
 }

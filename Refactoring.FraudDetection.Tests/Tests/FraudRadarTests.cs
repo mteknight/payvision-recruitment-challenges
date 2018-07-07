@@ -22,7 +22,7 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
     [TestClass]
     public class FraudRadarTests
     {
-        private readonly FraudRadarFactory _fraudRadarFactory;
+        private readonly IFraudRadarFactory _fraudRadarFactory;
 
         public FraudRadarTests()
         {

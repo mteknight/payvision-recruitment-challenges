@@ -1,12 +1,12 @@
-﻿using Payvision.CodeChallenge.Refactoring.FraudDetection.Factories;
-
-namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
+﻿namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using Entities;
+
+    using Factories;
 
     using FluentAssertions;
 
@@ -15,7 +15,7 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
     [TestClass]
     public class OrderReaderServiceTests
     {
-        private readonly OrderReaderServiceFactory _orderReaderServiceFactory;
+        private readonly IOrderReaderServiceFactory _orderReaderServiceFactory;
 
         public OrderReaderServiceTests()
         {

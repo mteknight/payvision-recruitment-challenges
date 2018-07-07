@@ -13,7 +13,7 @@
     [TestClass]
     public class OrderFactoryTests
     {
-        private OrderFactory _orderFactory;
+        private readonly IOrderFactory _orderFactory;
 
         public OrderFactoryTests()
         {

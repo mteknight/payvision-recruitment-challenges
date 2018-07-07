@@ -12,12 +12,15 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
 
     public class OrderReaderService : IOrderReaderService
     {
-        private readonly OrderFactory _orderFactory;
+        private readonly IOrderFactory _orderFactory;
+        private readonly IOrderDataNormalizationService _orderDataNormalizationService;
 
         public OrderReaderService(
-            OrderFactory orderFactory)
+            IOrderFactory orderFactory,
+            IOrderDataNormalizationService orderDataNormalizationService)
         {
             _orderFactory = orderFactory ?? throw new ArgumentNullException(nameof(orderFactory));
+            _orderDataNormalizationService = orderDataNormalizationService ?? throw new ArgumentNullException(nameof(orderDataNormalizationService));
         }
 
         public IEnumerable<Order> ReadOrders(string filePath)
@@ -59,41 +62,12 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
             var fields = ParseOrderFields(line);
             var order = _orderFactory.CreateFromFieldArray(fields);
 
-            return Normalize(order);
+            return this._orderDataNormalizationService.Normalize(order);
         }
 
         private static string[] ParseOrderFields(string line)
         {
             return line.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-        }
-
-        private static Order Normalize(Order order)
-        {
-            //Normalize email
-            var aux = order.Email.Split(new[] { '@' }, StringSplitOptions.RemoveEmptyEntries);
-
-            var atIndex = aux[0]
-                .IndexOf("+", StringComparison.Ordinal);
-
-            aux[0] = atIndex < 0
-                ? aux[0]
-                    .Replace(".", "")
-                : aux[0]
-                    .Replace(".", "")
-                    .Remove(atIndex);
-
-            order.Email = string.Join("@", aux[0], aux[1]);
-
-            //Normalize street
-            order.Street = order.Street.Replace("st.", "street")
-                .Replace("rd.", "road");
-
-            //Normalize state
-            order.State = order.State.Replace("il", "illinois")
-                .Replace("ca", "california")
-                .Replace("ny", "new york");
-
-            return order;
         }
     }
 }

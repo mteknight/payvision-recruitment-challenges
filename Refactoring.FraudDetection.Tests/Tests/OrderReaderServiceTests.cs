@@ -6,11 +6,11 @@
 
     using Entities;
 
-    using Factories;
-
     using FluentAssertions;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using Payvision.CodeChallenge.Refactoring.FraudDetection.Factories;
 
     [TestClass]
     public class OrderReaderServiceTests

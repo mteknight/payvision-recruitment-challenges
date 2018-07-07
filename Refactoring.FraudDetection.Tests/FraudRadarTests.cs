@@ -4,14 +4,20 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using Payvision.CodeChallenge.Refactoring.FraudDetection.Services;
+
 namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+
     using FluentAssertions;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using ValueObjects;
 
     [TestClass]
     public class FraudRadarTests
@@ -60,11 +66,9 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
             result.Count().ShouldBeEquivalentTo(2, "The result should contains the number of lines of the file");
         }
 
-        
-
-        private static List<FraudRadar.FraudResult> ExecuteTest(string filePath)
+        private static List<FraudResult> ExecuteTest(string filePath)
         {
-            var fraudRadar = new FraudRadar();
+            var fraudRadar = new FraudRadar(new OrderReaderService());
 
             return fraudRadar.Check(filePath).ToList();
         }

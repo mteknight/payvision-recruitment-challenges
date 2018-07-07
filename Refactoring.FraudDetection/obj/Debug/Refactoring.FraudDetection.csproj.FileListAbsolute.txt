@@ -9,3 +9,9 @@ C:\Users\l.poza\Desktop\New Challenges\C#\Payvision.Challenge\Refactoring.FraudD
 \\company\files\MadridFileStorage\09 Developers\Leo\005 - New Challenges\C#\Payvision.Challenge\Refactoring.FraudDetection\obj\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.dll
 \\company\files\MadridFileStorage\09 Developers\Leo\005 - New Challenges\C#\Payvision.Challenge\Refactoring.FraudDetection\obj\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.pdb
 \\company\files\MadridFileStorage\09 Developers\Leo\005 - New Challenges\C#\Payvision.Challenge\Refactoring.FraudDetection\obj\Debug\Refactoring.FraudDetection.csproj.CoreCompileInputs.cache
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection\bin\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.dll
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection\bin\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.pdb
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection\obj\Debug\Refactoring.FraudDetection.csprojAssemblyReference.cache
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection\obj\Debug\Refactoring.FraudDetection.csproj.CoreCompileInputs.cache
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection\obj\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.dll
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection\obj\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.pdb

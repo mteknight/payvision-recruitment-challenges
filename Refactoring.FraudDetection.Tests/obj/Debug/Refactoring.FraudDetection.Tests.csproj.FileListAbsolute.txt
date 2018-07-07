@@ -35,3 +35,23 @@ C:\Users\l.poza\Desktop\New Challenges\C#\Payvision.Challenge\Refactoring.FraudD
 \\company\files\MadridFileStorage\09 Developers\Leo\005 - New Challenges\C#\Payvision.Challenge\Refactoring.FraudDetection.Tests\obj\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.Tests.dll
 \\company\files\MadridFileStorage\09 Developers\Leo\005 - New Challenges\C#\Payvision.Challenge\Refactoring.FraudDetection.Tests\obj\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.Tests.pdb
 \\company\files\MadridFileStorage\09 Developers\Leo\005 - New Challenges\C#\Payvision.Challenge\Refactoring.FraudDetection.Tests\obj\Debug\Refactoring.FraudDetection.Tests.csproj.CoreCompileInputs.cache
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\Files\FourLines_MoreThanOneFraudulent.txt
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\Files\TwoLines_FraudulentSecond.txt
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\Files\ThreeLines_FraudulentSecond.txt
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\Files\OneLineFile.txt
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.Tests.dll
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.Tests.pdb
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\FluentAssertions.Core.dll
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\FluentAssertions.dll
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.dll
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.pdb
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\FluentAssertions.pdb
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\FluentAssertions.xml
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\FluentAssertions.Core.pdb
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\bin\Debug\FluentAssertions.Core.xml
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\obj\Debug\Refactoring.FraudDetection.Tests.csprojAssemblyReference.cache
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\obj\Debug\Refactoring.FraudDetection.Tests.csproj.CoreCompileInputs.cache
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\obj\Debug\Refactoring.FraudDetection.Tests.csproj.CopyComplete
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\obj\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.Tests.dll
+C:\Projects\Github\mteknight\payvision-recruitment-challenges\Refactoring.FraudDetection.Tests\obj\Debug\Payvision.CodeChallenge.Refactoring.FraudDetection.Tests.pdb

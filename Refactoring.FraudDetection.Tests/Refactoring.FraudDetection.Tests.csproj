@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="FraudRadarTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OrderReaderServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Files\FourLines_MoreThanOneFraudulent.txt">

@@ -2,12 +2,17 @@
 
 namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Factories
 {
-    public sealed class OrderReaderServiceFactory
+    public sealed class OrderReaderServiceFactory : IOrderReaderServiceFactory
     {
-        public OrderReaderService Create()
+        public IOrderReaderService Create()
         {
             var orderFactory = new OrderFactory();
-            return new OrderReaderService(orderFactory);
+            var orderDataNormalizationServiceFactory = new OrderDataNormalizationServiceFactory();
+            var orderDataNormalizationService = orderDataNormalizationServiceFactory.Create();
+
+            return new OrderReaderService(
+                orderFactory,
+                orderDataNormalizationService);
         }
     }
 }

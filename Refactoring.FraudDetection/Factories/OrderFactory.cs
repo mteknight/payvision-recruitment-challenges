@@ -1,10 +1,10 @@
-﻿using System;
-
-namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Factories
+﻿namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Factories
 {
+    using System;
+
     using Entities;
 
-    public sealed class OrderFactory
+    public sealed class OrderFactory : IOrderFactory
     {
         public Order CreateFromFieldArray(string[] fields)
         {

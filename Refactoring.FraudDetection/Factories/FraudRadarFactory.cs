@@ -1,6 +1,6 @@
 ﻿namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Factories
 {
-    public sealed class FraudRadarFactory
+    public sealed class FraudRadarFactory : IFraudRadarFactory
     {
         public FraudRadar Create()
         {

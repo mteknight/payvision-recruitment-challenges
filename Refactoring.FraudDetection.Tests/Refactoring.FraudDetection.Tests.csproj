@@ -78,13 +78,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Refactoring.FraudDetection\Refactoring.FraudDetection.csproj">
       <Project>{dd7d1c3a-6e45-4c2e-a55a-01984ad4a3e8}</Project>
       <Name>Refactoring.FraudDetection</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

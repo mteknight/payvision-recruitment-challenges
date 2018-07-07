@@ -1,4 +1,8 @@
-﻿namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
+﻿using System.Linq;
+
+using Payvision.CodeChallenge.Refactoring.FraudDetection.Factories;
+
+namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
 {
     using System;
     using System.Collections.Generic;
@@ -8,37 +12,51 @@
 
     public class OrderReaderService : IOrderReaderService
     {
-        private const string PathNullOrEmptyErrorMessage = "Path cannot be null or empty when reading orders.";
+        private readonly OrderFactory _orderFactory;
+
+        public OrderReaderService(
+            OrderFactory orderFactory)
+        {
+            _orderFactory = orderFactory ?? throw new ArgumentNullException(nameof(orderFactory));
+        }
 
         public IEnumerable<Order> ReadOrders(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
             {
+                const string PathNullOrEmptyErrorMessage = "Path cannot be null or empty when reading orders.";
                 throw new ArgumentNullException(nameof(filePath), PathNullOrEmptyErrorMessage);
             }
 
-            var orders = new List<Order>();
-
-            var lines = File.ReadAllLines(filePath);
-
+            var lines = ReadOrdersFile(filePath);
             foreach (var line in lines)
             {
-                var items = line.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                var order = new Order
-                {
-                    OrderId = int.Parse(items[0]),
-                    DealId = int.Parse(items[1]),
-                    Email = items[2].ToLower(),
-                    Street = items[3].ToLower(),
-                    City = items[4].ToLower(),
-                    State = items[5].ToLower(),
-                    ZipCode = items[6],
-                    CreditCard = items[7]
-                };
-
-                yield return Normalize(order);
+                yield return ParseOrder(line);
             }
+        }
+
+        private static IEnumerable<string> ReadOrdersFile(string filePath)
+        {
+            try
+            {
+                return File.ReadAllLines(filePath)
+                    .Where(line => !string.IsNullOrEmpty(line));
+            }
+            catch (Exception e)
+            {
+                LogException(e);
+                return Array.Empty<string>();
+            }
+        }
+
+        private static void LogException(Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        private static string[] ParseOrderFields(string line)
+        {
+            return line.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         private static Order Normalize(Order order)
@@ -68,6 +86,14 @@
                 .Replace("ny", "new york");
 
             return order;
+        }
+
+        private Order ParseOrder(string line)
+        {
+            var fields = ParseOrderFields(line);
+            var order = _orderFactory.CreateFromFieldArray(fields);
+
+            return Normalize(order);
         }
     }
 }

@@ -4,8 +4,6 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using Payvision.CodeChallenge.Refactoring.FraudDetection.Services;
-
 namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
 {
     using System;
@@ -16,6 +14,8 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
     using FluentAssertions;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using Services;
 
     using ValueObjects;
 

@@ -3,11 +3,6 @@
 1. [Counting Bits](CountingBits.md)
 2. [Refactoring](Refactoring.md)
 
-# Software Engineer - C#
-
-Here you have the challenge for the software engineer position. You can find in this branch a visual studio solution with different projects. Two different challenges, an algorithm one another one to see how you can refactor a dirty code. If you think that you can solve it using some design patters, feel free and apply them. Let's go! :sunglasses:
-
-
 # 1- Counting bits
 Given an integer, n, we want to know the following:
 1. How many 1-bits are in its binary representation?

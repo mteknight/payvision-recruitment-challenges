@@ -1,3 +1,7 @@
+# SOLUTIONS
+Jump to solution information right away from here:
+1. [Counting Bits](CountingBits.md)
+
 # Software Engineer - C#
 
 Here you have the challenge for the software engineer position. You can find in this branch a visual studio solution with different projects. Two different challenges, an algorithm one another one to see how you can refactor a dirty code. If you think that you can solve it using some design patters, feel free and apply them. Let's go! :sunglasses:

@@ -28,15 +28,15 @@
 
         private static IEnumerable<FraudResult> GetFrauds(IReadOnlyList<Order> orders)
         {
-            for (var i = 0; i < orders.Count; i++)
+            for (var baseOrderIndex = 0; baseOrderIndex < orders.Count; baseOrderIndex++)
             {
-                var baseOrderToCompare = orders[i];
+                var baseOrderToCompareTo = orders[baseOrderIndex];
 
-                for (var j = i + 1; j < orders.Count; j++)
+                for (var currentOrderIndex = baseOrderIndex + 1; currentOrderIndex < orders.Count; currentOrderIndex++)
                 {
-                    var currentOrder = orders[j];
+                    var currentOrder = orders[currentOrderIndex];
 
-                    var isFraudulent = IsFraudulentOrder(baseOrderToCompare, currentOrder);
+                    var isFraudulent = IsFraudulentOrder(baseOrderToCompareTo, currentOrder);
                     if (isFraudulent)
                     {
                         yield return CreateFraudResult(currentOrder);

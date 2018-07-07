@@ -1,3 +1,5 @@
+See the original source code for these challenges [here](../../tree/original-challenge)
+
 # SOLUTIONS
 **Jump to solution information right away from here:**
 1. [Counting Bits](CountingBits.md)

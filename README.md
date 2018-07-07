@@ -1,6 +1,7 @@
 # SOLUTIONS
-Jump to solution information right away from here:
+**Jump to solution information right away from here:**
 1. [Counting Bits](CountingBits.md)
+2. [Refactoring](Refactoring.md)
 
 # Software Engineer - C#
 

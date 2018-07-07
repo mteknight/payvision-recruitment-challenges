@@ -1,9 +1,8 @@
-﻿using System.Linq;
-
-namespace Payvision.CodeChallenge.Refactoring.FraudDetection
+﻿namespace Payvision.CodeChallenge.Refactoring.FraudDetection
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     using Entities;
 
@@ -24,43 +23,78 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection
         public IEnumerable<FraudResult> Check(string filePath)
         {
             var orders = _orderReaderService.ReadOrders(filePath);
-
             return GetFrauds(orders.ToList());
         }
 
-        private static IEnumerable<FraudResult> GetFrauds(List<Order> orders)
+        private static IEnumerable<FraudResult> GetFrauds(IReadOnlyList<Order> orders)
         {
             for (var i = 0; i < orders.Count; i++)
             {
-                var current = orders[i];
-                var isFraudulent = false;
+                var baseOrderToCompare = orders[i];
 
                 for (var j = i + 1; j < orders.Count; j++)
                 {
-                    isFraudulent = false;
+                    var currentOrder = orders[j];
 
-                    if (current.DealId == orders[j].DealId
-                        && current.Email == orders[j].Email
-                        && current.CreditCard != orders[j].CreditCard)
-                        isFraudulent = true;
-
-                    if (current.DealId == orders[j].DealId
-                        && current.State == orders[j].State
-                        && current.ZipCode == orders[j].ZipCode
-                        && current.Street == orders[j].Street
-                        && current.City == orders[j].City
-                        && current.CreditCard != orders[j].CreditCard)
-                        isFraudulent = true;
-
+                    var isFraudulent = IsFraudulentOrder(baseOrderToCompare, currentOrder);
                     if (isFraudulent)
-                        yield return new FraudResult
-                        {
-                            IsFraudulent = true,
-                            OrderId = orders[j]
-                                .OrderId
-                        };
+                    {
+                        yield return CreateFraudResult(currentOrder);
+                    }
                 }
             }
+        }
+
+        private static bool IsFraudulentOrder(Order baseOrderToCompare, Order currentOrder)
+        {
+            return IsMatchOrderByIdentity(baseOrderToCompare, currentOrder) ||
+                   IsMatchOrderByAddress(baseOrderToCompare, currentOrder);
+        }
+
+        private static bool IsMatchOrderByIdentity(Order currentOrder, Order order)
+        {
+            return MatchByDealId(currentOrder, order) &&
+                   MatchByEmail(currentOrder, order) &&
+                   NotMatchByCreditCard(currentOrder, order);
+        }
+
+        private static bool MatchByDealId(Order currentOrder, Order order)
+        {
+            return currentOrder.DealId == order.DealId;
+        }
+
+        private static bool MatchByEmail(Order currentOrder, Order order)
+        {
+            return currentOrder.Email == order.Email;
+        }
+
+        private static bool NotMatchByCreditCard(Order currentOrder, Order order)
+        {
+            return currentOrder.CreditCard != order.CreditCard;
+        }
+
+        private static bool IsMatchOrderByAddress(Order currentOrder, Order order)
+        {
+            return MatchByDealId(currentOrder, order) &&
+                   MatchByAddress(currentOrder, order) &&
+                   NotMatchByCreditCard(currentOrder, order);
+        }
+
+        private static bool MatchByAddress(Order currentOrder, Order order)
+        {
+            return currentOrder.State == order.State &&
+                   currentOrder.ZipCode == order.ZipCode &&
+                   currentOrder.Street == order.Street &&
+                   currentOrder.City == order.City;
+        }
+
+        private static FraudResult CreateFraudResult(Order fraudulentOrder)
+        {
+            return new FraudResult
+            {
+                IsFraudulent = true,
+                OrderId = fraudulentOrder.OrderId
+            };
         }
     }
 }

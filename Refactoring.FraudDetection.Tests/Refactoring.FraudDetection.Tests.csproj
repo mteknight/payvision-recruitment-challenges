@@ -59,8 +59,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Helpers\OrderHelper.cs" />
     <Compile Include="Tests\FraudRadarTests.cs" />
-    <Compile Include="Tests\OrderDataNormalizationServiceTests.cs" />
+    <Compile Include="Tests\OrderDataNormalizationServiceTests\OrderEmailNormalizationTests.cs" />
+    <Compile Include="Tests\OrderDataNormalizationServiceTests\OrderStreetNormalizationTests.cs" />
+    <Compile Include="Tests\OrderDataNormalizationServiceTests\OrderStateNormalizationTests.cs" />
+    <Compile Include="Tests\OrderDataNormalizationServiceTests\OrderTests.cs" />
     <Compile Include="Tests\OrderFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\OrderReaderServiceTests.cs" />

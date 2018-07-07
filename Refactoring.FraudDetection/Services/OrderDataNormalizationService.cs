@@ -10,7 +10,8 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
         {
             if (order == null)
             {
-                throw new ArgumentNullException(nameof(order), "Order cannot be null for data normalization");
+                const string orderNullError = "Order cannot be null for data normalization";
+                throw new ArgumentNullException(nameof(order), orderNullError);
             }
 
             order.Email = NormalizeEmail(order);
@@ -22,13 +23,13 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
 
         private static string NormalizeEmail(Order order)
         {
-            if (string.IsNullOrWhiteSpace(order.Email))
+            if (order.Email is null)
             {
-                return order.Email;
+                const string emailNullError = "Email address cannot be null for normalization";
+                throw new ArgumentNullException(nameof(order.Email), emailNullError);
             }
 
             var emailParts = SplitEmailParts(order.Email);
-
             emailParts[0] = StripDotsAndPlusSign(emailParts[0]);
 
             return ReconstructNormalizedEmail(emailParts);
@@ -78,6 +79,12 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
 
         private static string NormalizeStreet(Order order)
         {
+            if (order.Street is null)
+            {
+                const string streetNullError = "Street cannot be null for normalization";
+                throw new ArgumentNullException(nameof(order.Street), streetNullError);
+            }
+
             return order.Street
                 .Replace("st.", "street")
                 .Replace("rd.", "road");
@@ -85,6 +92,12 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
 
         private static string NormalizeState(Order order)
         {
+            if (order.State is null)
+            {
+                const string stateNullError = "State cannot be null for normalization";
+                throw new ArgumentNullException(nameof(order.State), stateNullError);
+            }
+
             return order.State
                 .Replace("il", "illinois")
                 .Replace("ca", "california")

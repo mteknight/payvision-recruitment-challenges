@@ -1,4 +1,6 @@
-﻿namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
+﻿using Payvision.CodeChallenge.Refactoring.FraudDetection.Factories;
+
+namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -10,11 +12,16 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Services;
-
     [TestClass]
     public class OrderReaderServiceTests
     {
+        private readonly OrderReaderServiceFactory _orderReaderServiceFactory;
+
+        public OrderReaderServiceTests()
+        {
+            this._orderReaderServiceFactory = new OrderReaderServiceFactory();
+        }
+
         [TestMethod]
         public void ReadOrders_EmptyFilePath_ExceptionExpected()
         {
@@ -31,9 +38,9 @@
             result.ShouldThrowExactly<ArgumentNullException>("The result should not read from empty file path");
         }
 
-        private static List<Order> ExecuteTest(string filePath)
+        private List<Order> ExecuteTest(string filePath)
         {
-            var orderReader = new OrderReaderService();
+            var orderReader = this._orderReaderServiceFactory.Create();
 
             return orderReader.ReadOrders(filePath).ToList();
         }

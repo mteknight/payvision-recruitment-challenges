@@ -15,13 +15,20 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using Services;
+    using Payvision.CodeChallenge.Refactoring.FraudDetection.Factories;
 
     using ValueObjects;
 
     [TestClass]
     public class FraudRadarTests
     {
+        private readonly FraudRadarFactory _fraudRadarFactory;
+
+        public FraudRadarTests()
+        {
+            this._fraudRadarFactory = new FraudRadarFactory();
+        }
+
         [TestMethod]
         [DeploymentItem("./Files/OneLineFile.txt", "Files")]
         public void CheckFraud_OneLineFile_NoFraudExpected()
@@ -66,9 +73,9 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Tests
             result.Count().ShouldBeEquivalentTo(2, "The result should contains the number of lines of the file");
         }
 
-        private static List<FraudResult> ExecuteTest(string filePath)
+        private List<FraudResult> ExecuteTest(string filePath)
         {
-            var fraudRadar = new FraudRadar(new OrderReaderService());
+            var fraudRadar = this._fraudRadarFactory.Create();
 
             return fraudRadar.Check(filePath).ToList();
         }

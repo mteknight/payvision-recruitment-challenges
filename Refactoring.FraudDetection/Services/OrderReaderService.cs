@@ -24,8 +24,8 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
         {
             if (string.IsNullOrWhiteSpace(filePath))
             {
-                const string PathNullOrEmptyErrorMessage = "Path cannot be null or empty when reading orders.";
-                throw new ArgumentNullException(nameof(filePath), PathNullOrEmptyErrorMessage);
+                const string pathNullOrEmptyError = "Path cannot be null or empty when reading orders.";
+                throw new ArgumentNullException(nameof(filePath), pathNullOrEmptyError);
             }
 
             var lines = ReadOrdersFile(filePath);
@@ -52,6 +52,14 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
         private static void LogException(Exception e)
         {
             Console.WriteLine(e);
+        }
+
+        private Order ParseOrder(string line)
+        {
+            var fields = ParseOrderFields(line);
+            var order = _orderFactory.CreateFromFieldArray(fields);
+
+            return Normalize(order);
         }
 
         private static string[] ParseOrderFields(string line)
@@ -86,14 +94,6 @@ namespace Payvision.CodeChallenge.Refactoring.FraudDetection.Services
                 .Replace("ny", "new york");
 
             return order;
-        }
-
-        private Order ParseOrder(string line)
-        {
-            var fields = ParseOrderFields(line);
-            var order = _orderFactory.CreateFromFieldArray(fields);
-
-            return Normalize(order);
         }
     }
 }
